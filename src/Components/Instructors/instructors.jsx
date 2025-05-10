@@ -20,7 +20,7 @@ export default function Instructors() {
     queryKey:["instructors"],
     queryFn:GetPopularInstruc,
    })
-   console.log(data)
+
 
    if(isLoading) return <Loading/>
  return <>
@@ -30,7 +30,7 @@ export default function Instructors() {
   <div className="w-12 h-0.5 bg-primary-500 mx-auto mt-1"></div>
     </div>
     <h1 className="text-4xl  text-center mt-3 mb-14 font-bold"> Expert Instructors</h1>
-    <div className="flex flex-col md:flex-row   gap-8">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-4">
     {data.data.data.items.map((item)=>(
      <InstructorCard itemInfo={item} key={item._id}/>
     ))

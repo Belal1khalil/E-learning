@@ -122,6 +122,8 @@ import Forgetpassword from "./Pages/forgetPass/forgetPassword";
 import ConfirmEmail from "./Pages/ConfirmEmail/ConfirmEmail";
 import Confirmforgetpass from "./Pages/confirmforgetpass/confirmforgetpass";
 import ResetPassword from "./Pages/Reset/ResetPassword";
+import Paymentsuccess from './Pages/paymenytSuccess/Paymentsuccess';
+import Paymentfailed from './Pages/PaymentFailed/Paymentfailed';
 
 const themes = {
   light: {
@@ -157,7 +159,9 @@ export default function App() {
         {path:"/course/:id", element:<CourseDetails/>},
         {path:"/instructors", element:<InstructorsPage/>},
         {path:"/video", element:<VideoPlayer/>},
-        {path:"/checkout", element:<CheckOut/>},    
+        {path:"/checkout", element:<CheckOut/>},  
+        {path:"/payment-success", element:<Paymentsuccess/>},
+        {path:"/payment-failure", element:<Paymentfailed/>},  
     ],
     },
     
@@ -173,6 +177,7 @@ export default function App() {
       {path:"/forgetpassword", element:<Forgetpassword/>},
       {path:"/Confirmforgetpass", element:<Confirmforgetpass/>},
       {path:"/ResetPassword", element:<ResetPassword/>},
+    
    
      
     ],

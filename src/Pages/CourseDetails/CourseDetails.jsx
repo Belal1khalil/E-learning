@@ -31,14 +31,15 @@ export default function CourseDetails() {
   // Fetch Section Videos (Per Section)
  
   async function getSectionVideos(sectionId) {
+
+    
     try {
       const options = {
         url: `https://brightminds.runasp.net/api/Video/section/${sectionId}`,
         method: "GET",
       };
       let { data } = await axios.request(options);
-      console.log("........")
-        console.log(data)
+   
       // Store videos separately for each section
       setSectionVideos((prev) => ({
         ...prev,
@@ -105,6 +106,7 @@ export default function CourseDetails() {
                               toggleItem(index);
                               getSectionVideos(item.id); // Fetch videos for this section
                             }}
+                            
                           >
                             <td className="p-4">
                               <div className="flex items-center">
@@ -119,8 +121,11 @@ export default function CourseDetails() {
                               </div>
                             </td>
                           </tr>
-
+                              {
+                                console.log(item)
+                              }
                           {/* Videos (If Section is Open) */}
+                          
                           {openItems[index] && (
                             <tr>
                               <td colSpan="2" className="p-4 bg-white">
@@ -128,10 +133,12 @@ export default function CourseDetails() {
                                   {sectionVideos[item.id] ? (
                                     sectionVideos[item.id].map((video) => (
                                       <li key={video.id} className="flex justify-between items-center text-xl py-2">
-                                        <Link to="/video"className="hover:underline">{video.name}</Link>
+                                        <Link to= {`/video?videoUrl=${video.videoUrl}&videoname=${encodeURIComponent(video.name)}`}className="hover:underline">{video.name} 
+                                        </Link>
                                        <span className="text-gray-500 text-sm">({video.duration}m)</span>
                                      </li>
                                     ))
+                                    
                                   ) : (
                                     <p>Loading videos...</p>
                                   )}

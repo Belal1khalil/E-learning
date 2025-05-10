@@ -1,22 +1,55 @@
 
 import { useContext, useEffect } from "react";
-
 import { CartContext } from "../../Context/Cart.Context";
 import Loading from "../../Components/Loading/loading";
 import CartItem from "../../Components/Cartitem/CartItem";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { useTheme } from "../../Context/ThemeContext";
+import axios from "axios";
 
 export default function ShoppingCart() {
+  const baseUrl = `${window.location.protocol}//${window.location.host}`;
+  
+
    let{GetCartCourses , CourseInfo , ClearCart} = useContext(CartContext)     
    const { theme } = useTheme();
-   console.log(".......")
-   console.log(CourseInfo)
+  
     useEffect(()=>{
         GetCartCourses()
     } ,[])
 
+    async function handleOnlinePayment() {
+      try {
+        const options = {
+          url: `https://brightminds.runasp.net/api/Payment/checkout`,
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          data:{
+            basketId: CourseInfo.data.id,
+            paymentSucessUrl: `${baseUrl}/payment-success`,
+            paymentFailedUrl: `${baseUrl}/payment-failure`,
+          }
+        };
+  
+        const response = await axios.request(options);
+        
+        
+  
+        // Assuming the API returns a payment URL to redirect the user
+        if (response?.data && response?.data?.url) {
+          window.location.href = response.data.url; // Redirect to the payment page
+        } else {
+          alert("Payment initiation failed. Please try again.");
+        }
+      } catch (error) {
+        console.error("Payment Error:", error);
+        alert("An error occurred while processing the payment.");
+      }
+    }
     
     return (
         
@@ -78,7 +111,11 @@ export default function ShoppingCart() {
         <span>Total:</span>
         <span>{CourseInfo.data.totalPirce}$</span>
       </div>
-      <Link to={"/checkout"} className="bg-blue-600 text-white block text-center w-full py-2 mt-4 rounded-md hover:bg-blue-700">
+      <Link to={""}
+       onClick={()=>{
+        handleOnlinePayment()
+       }}
+      className="bg-blue-600 text-white block text-center w-full py-2 mt-4 rounded-md hover:bg-blue-700">
         Proceed to Checkout
       </Link>
       <Link to={"/courses"} className="text-white text-center my-2 block cursor-pointer btn w-full bg-green-600 hover:bg-green-700">

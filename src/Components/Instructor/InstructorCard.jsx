@@ -2,12 +2,12 @@
 
 // eslint-disable-next-line no-unused-vars, react/prop-types
 export default function InstructorCard({itemInfo}) {
-    console.log(itemInfo)
+    
     // eslint-disable-next-line react/prop-types, no-unused-vars
     const {displayName , imageCover , jobTitle , email} = itemInfo
   return <>
    
-   <div className="relative my-4 w-80 rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl group">
+   <div className="relative  my-4 w-80 mx-auto rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl group">
             {/* Image Section */}
             <div className="relative">
                 <img

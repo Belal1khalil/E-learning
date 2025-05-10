@@ -9,6 +9,7 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const {token , logOut} = useContext(UserContext)
   let {CourseInfo} = useContext(CartContext)
+
   const { theme, toggleTheme } = useTheme();
   return (
     <>
@@ -38,7 +39,7 @@ export default function Navbar() {
           >
             {token && (
               <>
-              <li className="text-lg">
+              <li >
               <NavLink
                 className={({ isActive }) => {
                   return `relative before:absolute before:w-0 before:h-0.5 hover:before:w-full before:transition-[width] before:duration-300 before:bg-primary-500 before:left-0 before:-bottom-1 ${
@@ -66,7 +67,7 @@ export default function Navbar() {
               <NavLink
                 className={({ isActive }) => {
                   return `relative before:absolute before:w-0 before:h-0.5 hover:before:w-full before:transition-[width] before:duration-300 before:bg-primary-300 before:left-0 before:-bottom-1 ${
-                    isActive ? "before-w-full font-semibold" : ""
+                    isActive ? "before:w-full font-semibold" : ""
                   }`;
                 }}
                 to="/Courses"
@@ -78,7 +79,7 @@ export default function Navbar() {
               <NavLink
                 className={({ isActive }) => {
                   return `relative before:absolute before:w-0 before:h-0.5 hover:before:w-full before:transition-[width] before:duration-300 before:bg-primary-300 before:left-0 before:-bottom-1 ${
-                    isActive ? "before-w-full font-semibold" : ""
+                    isActive ? "before:w-full font-semibold" : ""
                   }`;
                 }}
                 to="/instructors"
@@ -90,7 +91,7 @@ export default function Navbar() {
               <NavLink
                 className={({ isActive }) => {
                   return `relative before:absolute before:w-0 before:h-0.5 hover:before:w-full before:transition-[width] before:duration-300 before:bg-primary-300 before:left-0 before:-bottom-1 ${
-                    isActive ? "before-w-full font-semibold" : ""
+                    isActive ? "before:w-full font-semibold" : ""
                   }`;
                 }}
                 to="/about"
@@ -102,7 +103,7 @@ export default function Navbar() {
               <NavLink
                 className={({ isActive }) => {
                   return `relative before:absolute before:w-0 before:h-0.5 hover:before:w-full before:transition-[width] before:duration-300 before:bg-primary-300 before:left-0 before:-bottom-1 ${
-                    isActive ? "before-w-full font-semibold" : ""
+                    isActive ? "before:w-full font-semibold" : ""
                   }`;
                 }}
                 to="/contact"
@@ -147,7 +148,8 @@ export default function Navbar() {
            <Link to="/cart" className="cart relative  md:block">
             <i className="fa-solid fa-cart-shopping "></i>
             <div className="counter absolute w-5 h-5 rounded-full bg-primary-500 flex justify-center items-center text-white text-md  font-semibold top-0 right-0 translate-x-1/2 -translate-y-1/2">
-              {CourseInfo?.data?.items?.length ?? 0}
+
+              {CourseInfo?.data?.items?.length > 0 ? CourseInfo.data.items.length : 0}
             </div>
           </Link>
           </>

@@ -29,9 +29,11 @@ import toast from "react-hot-toast";
                let {data} =  await axios.request(options); 
                if(data.statusCode == 201) {
                 toast.success("Course Added Successfully")
+                GetCartCourses()
                }
     } catch (error) {
-        console.log(error)
+      console.log(error)
+        
     }finally {
         toast.dismiss(ToastId)
     }
@@ -47,12 +49,13 @@ import toast from "react-hot-toast";
             }
         }
         let {data} = await axios.request(options)
+        
         SetCourseInfo(data)
     } catch (error) {
         console.log(error)
     }
  }
-
+  
  //remove
 
  async function RemoveCoursefromCart({id}) {
@@ -73,6 +76,7 @@ import toast from "react-hot-toast";
 
   } catch (error) {
     console.log(error)
+    
   }finally {
     toast.dismiss(ToastId)
   }
@@ -101,7 +105,7 @@ import toast from "react-hot-toast";
       }
  }
 
-    return <CartContext.Provider value={{ addCourseToCart , GetCartCourses , CourseInfo , RemoveCoursefromCart , ClearCart}}>
+    return <CartContext.Provider value={{ addCourseToCart , GetCartCourses , CourseInfo , RemoveCoursefromCart , ClearCart , SetCourseInfo}}>
      {children}
     </CartContext.Provider>
  }

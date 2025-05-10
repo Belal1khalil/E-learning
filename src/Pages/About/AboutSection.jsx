@@ -14,8 +14,8 @@ export default function AboutSection() {
         <div className="absoulte -mt-3 ml-1 w-12 h-0.5 bg-primary-500 translate-x-28 -top-20 "></div>
         </div>
         <h1 className="text-3xl mx-2 font-bold">Welcome to Bright-Routes</h1>
-        <p className="text-xl ml-2 text-semibold  text-slate-600 "> Bright-Routes is a flexible and accessible way to acquire knowledge and skills, allowing learners to study anytime.</p>
-        <div className=" px-2 flex flex-col gap-2 md:flex-row md:gap-28">
+        <p className="text-xl ml-2 text-semibold  text-slate-600 px-2 "> Bright-Routes is a flexible and accessible way to acquire knowledge and skills, allowing learners to study anytime.</p>
+        <div className=" px-4 flex flex-col gap-2 md:flex-row md:gap-28">
             <div className="space-y-2">
             <p className=" text-slate-600 cursor-pointer hover:translate-x-3 transition-all duration-300">
             <i className="fa-solid fa-arrow-right text-primary-500 mr-2"></i>

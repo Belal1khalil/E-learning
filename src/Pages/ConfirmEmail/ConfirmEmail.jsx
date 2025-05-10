@@ -13,7 +13,7 @@ export default function ConfirmEmail() {
         const options = {
             url:"https://brightminds.runasp.net/api/Account/confirm-email",
             method:"POST",
-            data : {
+            data: {
                 email,
                 token,
             }
